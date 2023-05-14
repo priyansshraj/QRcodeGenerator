@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Priyansh's Project">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Nunito:wght@300;400;500;600;700;900;1000&family=Pacifico&family=Roboto:wght@100;500;700&family=Satisfy&display=swap"
+        rel="stylesheet">
+    <title>QR code generate</title>
+    <style>
+        body {
+            background-color: #234;
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+        }
+
+        h1{
+            color: cornflowerblue;
+        }
+
+        .outerbox {
+            color:white;
+            max-width: 500px;
+            width: 90%;
+            border: 5px solid black;
+            border-radius: 20px;
+            margin: auto;
+            margin-top: 5%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .upperpart p {
+            margin: 20px;
+            font-size: 25px;
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .upperpart input {
+            width: 80%;
+            margin: 20px;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 30px;
+        }
+
+        .upperpart button {
+            color: white;
+            background-color: #237;
+            padding: 10px;
+            font-size: 25px;
+            border-radius: 20px;
+            display: inline-flex;
+            cursor: pointer;
+        }
+
+        .output {
+            max-width: 500px;
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        #output.output img {
+            margin-right: 10px;
+        }
+
+        #output.output span {
+            width: 350px;
+        }
+
+        #left-output-div {
+            max-width: 350px;
+        }
+
+        #right-output-div {
+            display: block;
+            font-size: 20px;
+            color: rgb(149, 149, 206);
+            max-width: 150px;
+        }
+
+        .show-output {
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            height: 120px;
+            background-color: aliceblue;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        #history {
+            color: transparent;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>QR CODE GENERATOR</h1>
+    <div class="outerbox">
+        <div class="upperpart">
+            <p>Enter link or text to convert into QR code</p>
+            <input type="text" id="qrtext">
+            <br>
+            <button onclick="genetareQRcode()"> Submit</button>
+            <br><br>
+        </div>
+    </div>
+    <span id="history">History</span>
+    <div class="output" id="output">
+        <div id="left-output-div">
+        </div>
+        <div id="right-output-div">
+        </div>
+    </div>
+    <script>
+        var qrtext = document.getElementById("qrtext");
+
+        function genetareQRcode() {
+            if (qrtext.value === '') {
+                alert("You must write something!");
+            } else {
+                var history = document.getElementById("history");
+                history.style.color = "rgb(2, 183, 183)";
+                history.style.fontSize = "50px";
+
+                var new_div = document.createElement("div");
+                var new_lable = document.createElement("span");
+                var new_img = document.createElement("img");
+                var txt = document.createTextNode(qrtext.value);
+                new_div.className = 'show-output';
+                new_div.appendChild(new_lable);
+                new_div.appendChild(new_img);
+                new_lable.appendChild(txt);
+                document.getElementById("output").appendChild(new_div);
+                new_img.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrtext.value;
+            }
+        }
+    </script>
+</body>
+
+</html>
